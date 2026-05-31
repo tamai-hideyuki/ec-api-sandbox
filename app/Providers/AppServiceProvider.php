@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
         Route::bind('user', fn ($value) => User::active()->findOrFail($value));
         Route::bind('category', fn ($value) => Category::active()->findOrFail($value));
         Route::bind('product', fn ($value) => Product::active()->findOrFail($value));
+        Route::bind('comment', fn ($value) => Comment::active()->findOrFail($value));
     }
 }
