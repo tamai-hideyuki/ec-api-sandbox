@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -22,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Route::bind('user', fn ($value) => User::active()->findOrFail($value));
+        Route::bind('category', fn ($value) => Category::active()->findOrFail($value));
     }
 }
