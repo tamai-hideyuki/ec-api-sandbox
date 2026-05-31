@@ -9,6 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     services:
       mysql:
@@ -39,8 +41,10 @@ jobs:
       - name: Copy .env.testing
         run: cp .env.testing .env
 
-      - name: Generate key
-        run: php artisan key:generate
+      - name: Run migrations
+        env:
+          DB_PASSWORD: password
+        run: php artisan migrate --force
 
       - name: Run tests
         env:
